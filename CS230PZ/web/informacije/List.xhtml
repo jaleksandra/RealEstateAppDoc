@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListInformacijeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListInformacijeEmpty}" rendered="#{informacijeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{informacijeController.items.rowCount > 0}">
+                    <h:outputText value="#{informacijeController.pagination.pageFirstItem + 1}..#{informacijeController.pagination.pageLastItem + 1}/#{informacijeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{informacijeController.previous}" value="#{bundle.Previous} #{informacijeController.pagination.pageSize}" rendered="#{informacijeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{informacijeController.next}" value="#{bundle.Next} #{informacijeController.pagination.pageSize}" rendered="#{informacijeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{informacijeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInformacijeTitle_idInformacije}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idInformacije}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInformacijeTitle_svojina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.svojina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInformacijeTitle_vrednost}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vrednost}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInformacijeTitle_tip}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tip}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInformacijeTitle_idOglasa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOglasa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{informacijeController.prepareView}" value="#{bundle.ListInformacijeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{informacijeController.prepareEdit}" value="#{bundle.ListInformacijeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{informacijeController.destroy}" value="#{bundle.ListInformacijeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{informacijeController.prepareCreate}" value="#{bundle.ListInformacijeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListInformacijeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

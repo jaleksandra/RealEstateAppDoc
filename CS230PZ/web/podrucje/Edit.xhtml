@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPodrucjeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPodrucjeLabel_idPodrucja}" for="idPodrucja" />
+                    <h:inputText id="idPodrucja" value="#{podrucjeController.selected.idPodrucja}" title="#{bundle.EditPodrucjeTitle_idPodrucja}" required="true" requiredMessage="#{bundle.EditPodrucjeRequiredMessage_idPodrucja}"/>
+                    <h:outputLabel value="#{bundle.EditPodrucjeLabel_imePodrucja}" for="imePodrucja" />
+                    <h:inputText id="imePodrucja" value="#{podrucjeController.selected.imePodrucja}" title="#{bundle.EditPodrucjeTitle_imePodrucja}" />
+                    <h:outputLabel value="#{bundle.EditPodrucjeLabel_idGrada}" for="idGrada" />
+                    <h:selectOneMenu id="idGrada" value="#{podrucjeController.selected.idGrada}" title="#{bundle.EditPodrucjeTitle_idGrada}" >
+                        <f:selectItems value="#{gradController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{podrucjeController.update}" value="#{bundle.EditPodrucjeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPodrucjeViewLink}"/>
+                <br />
+                <h:commandLink action="#{podrucjeController.prepareList}" value="#{bundle.EditPodrucjeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPodrucjeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

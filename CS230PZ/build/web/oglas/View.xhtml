@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOglasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOglasLabel_idOglasa}"/>
+                    <h:outputText value="#{oglasController.selected.idOglasa}" title="#{bundle.ViewOglasTitle_idOglasa}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_nazivOglasa}"/>
+                    <h:outputText value="#{oglasController.selected.nazivOglasa}" title="#{bundle.ViewOglasTitle_nazivOglasa}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_opis}"/>
+                    <h:outputText value="#{oglasController.selected.opis}" title="#{bundle.ViewOglasTitle_opis}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_lokacija}"/>
+                    <h:outputText value="#{oglasController.selected.lokacija}" title="#{bundle.ViewOglasTitle_lokacija}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_cena}"/>
+                    <h:outputText value="#{oglasController.selected.cena}" title="#{bundle.ViewOglasTitle_cena}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_povrsina}"/>
+                    <h:outputText value="#{oglasController.selected.povrsina}" title="#{bundle.ViewOglasTitle_povrsina}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_adresa}"/>
+                    <h:outputText value="#{oglasController.selected.adresa}" title="#{bundle.ViewOglasTitle_adresa}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_idKategorije}"/>
+                    <h:outputText value="#{oglasController.selected.idKategorije}" title="#{bundle.ViewOglasTitle_idKategorije}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_idPodrucja}"/>
+                    <h:outputText value="#{oglasController.selected.idPodrucja}" title="#{bundle.ViewOglasTitle_idPodrucja}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_idTipa}"/>
+                    <h:outputText value="#{oglasController.selected.idTipa}" title="#{bundle.ViewOglasTitle_idTipa}"/>
+                    <h:outputText value="#{bundle.ViewOglasLabel_idNaloga}"/>
+                    <h:outputText value="#{oglasController.selected.idNaloga}" title="#{bundle.ViewOglasTitle_idNaloga}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{oglasController.destroyAndView}" value="#{bundle.ViewOglasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOglasEditLink}"/>
+                <br />
+                <h:commandLink action="#{oglasController.prepareCreate}" value="#{bundle.ViewOglasCreateLink}" />
+                <br />
+                <h:commandLink action="#{oglasController.prepareList}" value="#{bundle.ViewOglasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOglasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

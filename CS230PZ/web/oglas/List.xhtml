@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOglasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListOglasEmpty}" rendered="#{oglasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{oglasController.items.rowCount > 0}">
+                    <h:outputText value="#{oglasController.pagination.pageFirstItem + 1}..#{oglasController.pagination.pageLastItem + 1}/#{oglasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{oglasController.previous}" value="#{bundle.Previous} #{oglasController.pagination.pageSize}" rendered="#{oglasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{oglasController.next}" value="#{bundle.Next} #{oglasController.pagination.pageSize}" rendered="#{oglasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{oglasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_idOglasa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOglasa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_nazivOglasa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nazivOglasa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_opis}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.opis}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_lokacija}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lokacija}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_cena}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cena}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_povrsina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.povrsina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_adresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.adresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_idKategorije}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idKategorije}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_idPodrucja}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPodrucja}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_idTipa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOglasTitle_idNaloga}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNaloga}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{oglasController.prepareView}" value="#{bundle.ListOglasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{oglasController.prepareEdit}" value="#{bundle.ListOglasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{oglasController.destroy}" value="#{bundle.ListOglasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{oglasController.prepareCreate}" value="#{bundle.ListOglasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListOglasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

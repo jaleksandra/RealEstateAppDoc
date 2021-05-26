@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditNalogTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditNalogLabel_idNaloga}" for="idNaloga" />
+                    <h:inputText id="idNaloga" value="#{nalogController.selected.idNaloga}" title="#{bundle.EditNalogTitle_idNaloga}" required="true" requiredMessage="#{bundle.EditNalogRequiredMessage_idNaloga}"/>
+                    <h:outputLabel value="#{bundle.EditNalogLabel_korisnickoIme}" for="korisnickoIme" />
+                    <h:inputText id="korisnickoIme" value="#{nalogController.selected.korisnickoIme}" title="#{bundle.EditNalogTitle_korisnickoIme}" />
+                    <h:outputLabel value="#{bundle.EditNalogLabel_lozinka}" for="lozinka" />
+                    <h:inputText id="lozinka" value="#{nalogController.selected.lozinka}" title="#{bundle.EditNalogTitle_lozinka}" />
+                    <h:outputLabel value="#{bundle.EditNalogLabel_ime}" for="ime" />
+                    <h:inputText id="ime" value="#{nalogController.selected.ime}" title="#{bundle.EditNalogTitle_ime}" />
+                    <h:outputLabel value="#{bundle.EditNalogLabel_prezime}" for="prezime" />
+                    <h:inputText id="prezime" value="#{nalogController.selected.prezime}" title="#{bundle.EditNalogTitle_prezime}" />
+                </h:panelGrid>
+                <h:commandLink action="#{nalogController.update}" value="#{bundle.EditNalogSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditNalogViewLink}"/>
+                <br />
+                <h:commandLink action="#{nalogController.prepareList}" value="#{bundle.EditNalogShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditNalogIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

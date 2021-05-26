@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNalogTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListNalogEmpty}" rendered="#{nalogController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{nalogController.items.rowCount > 0}">
+                    <h:outputText value="#{nalogController.pagination.pageFirstItem + 1}..#{nalogController.pagination.pageLastItem + 1}/#{nalogController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{nalogController.previous}" value="#{bundle.Previous} #{nalogController.pagination.pageSize}" rendered="#{nalogController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{nalogController.next}" value="#{bundle.Next} #{nalogController.pagination.pageSize}" rendered="#{nalogController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{nalogController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNalogTitle_idNaloga}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNaloga}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNalogTitle_korisnickoIme}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.korisnickoIme}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNalogTitle_lozinka}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lozinka}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNalogTitle_ime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ime}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNalogTitle_prezime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.prezime}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{nalogController.prepareView}" value="#{bundle.ListNalogViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{nalogController.prepareEdit}" value="#{bundle.ListNalogEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{nalogController.destroy}" value="#{bundle.ListNalogDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{nalogController.prepareCreate}" value="#{bundle.ListNalogCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListNalogIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

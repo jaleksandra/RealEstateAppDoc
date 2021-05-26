@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOglasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_idOglasa}" for="idOglasa" />
+                    <h:inputText id="idOglasa" value="#{oglasController.selected.idOglasa}" title="#{bundle.CreateOglasTitle_idOglasa}" required="true" requiredMessage="#{bundle.CreateOglasRequiredMessage_idOglasa}"/>
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_nazivOglasa}" for="nazivOglasa" />
+                    <h:inputText id="nazivOglasa" value="#{oglasController.selected.nazivOglasa}" title="#{bundle.CreateOglasTitle_nazivOglasa}" />
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_opis}" for="opis" />
+                    <h:inputText id="opis" value="#{oglasController.selected.opis}" title="#{bundle.CreateOglasTitle_opis}" />
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_lokacija}" for="lokacija" />
+                    <h:inputText id="lokacija" value="#{oglasController.selected.lokacija}" title="#{bundle.CreateOglasTitle_lokacija}" />
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_cena}" for="cena" />
+                    <h:inputText id="cena" value="#{oglasController.selected.cena}" title="#{bundle.CreateOglasTitle_cena}" />
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_povrsina}" for="povrsina" />
+                    <h:inputText id="povrsina" value="#{oglasController.selected.povrsina}" title="#{bundle.CreateOglasTitle_povrsina}" />
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_adresa}" for="adresa" />
+                    <h:inputText id="adresa" value="#{oglasController.selected.adresa}" title="#{bundle.CreateOglasTitle_adresa}" />
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_idKategorije}" for="idKategorije" />
+                    <h:selectOneMenu id="idKategorije" value="#{oglasController.selected.idKategorije}" title="#{bundle.CreateOglasTitle_idKategorije}" >
+                        <f:selectItems value="#{kategorijaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_idPodrucja}" for="idPodrucja" />
+                    <h:selectOneMenu id="idPodrucja" value="#{oglasController.selected.idPodrucja}" title="#{bundle.CreateOglasTitle_idPodrucja}" >
+                        <f:selectItems value="#{podrucjeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_idTipa}" for="idTipa" />
+                    <h:selectOneMenu id="idTipa" value="#{oglasController.selected.idTipa}" title="#{bundle.CreateOglasTitle_idTipa}" >
+                        <f:selectItems value="#{tipController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOglasLabel_idNaloga}" for="idNaloga" />
+                    <h:selectOneMenu id="idNaloga" value="#{oglasController.selected.idNaloga}" title="#{bundle.CreateOglasTitle_idNaloga}" >
+                        <f:selectItems value="#{nalogController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{oglasController.create}" value="#{bundle.CreateOglasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{oglasController.prepareList}" value="#{bundle.CreateOglasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateOglasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditOglasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditOglasLabel_idOglasa}" for="idOglasa" />
+                    <h:inputText id="idOglasa" value="#{oglasController.selected.idOglasa}" title="#{bundle.EditOglasTitle_idOglasa}" required="true" requiredMessage="#{bundle.EditOglasRequiredMessage_idOglasa}"/>
+                    <h:outputLabel value="#{bundle.EditOglasLabel_nazivOglasa}" for="nazivOglasa" />
+                    <h:inputText id="nazivOglasa" value="#{oglasController.selected.nazivOglasa}" title="#{bundle.EditOglasTitle_nazivOglasa}" />
+                    <h:outputLabel value="#{bundle.EditOglasLabel_opis}" for="opis" />
+                    <h:inputText id="opis" value="#{oglasController.selected.opis}" title="#{bundle.EditOglasTitle_opis}" />
+                    <h:outputLabel value="#{bundle.EditOglasLabel_lokacija}" for="lokacija" />
+                    <h:inputText id="lokacija" value="#{oglasController.selected.lokacija}" title="#{bundle.EditOglasTitle_lokacija}" />
+                    <h:outputLabel value="#{bundle.EditOglasLabel_cena}" for="cena" />
+                    <h:inputText id="cena" value="#{oglasController.selected.cena}" title="#{bundle.EditOglasTitle_cena}" />
+                    <h:outputLabel value="#{bundle.EditOglasLabel_povrsina}" for="povrsina" />
+                    <h:inputText id="povrsina" value="#{oglasController.selected.povrsina}" title="#{bundle.EditOglasTitle_povrsina}" />
+                    <h:outputLabel value="#{bundle.EditOglasLabel_adresa}" for="adresa" />
+                    <h:inputText id="adresa" value="#{oglasController.selected.adresa}" title="#{bundle.EditOglasTitle_adresa}" />
+                    <h:outputLabel value="#{bundle.EditOglasLabel_idKategorije}" for="idKategorije" />
+                    <h:selectOneMenu id="idKategorije" value="#{oglasController.selected.idKategorije}" title="#{bundle.EditOglasTitle_idKategorije}" >
+                        <f:selectItems value="#{kategorijaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOglasLabel_idPodrucja}" for="idPodrucja" />
+                    <h:selectOneMenu id="idPodrucja" value="#{oglasController.selected.idPodrucja}" title="#{bundle.EditOglasTitle_idPodrucja}" >
+                        <f:selectItems value="#{podrucjeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOglasLabel_idTipa}" for="idTipa" />
+                    <h:selectOneMenu id="idTipa" value="#{oglasController.selected.idTipa}" title="#{bundle.EditOglasTitle_idTipa}" >
+                        <f:selectItems value="#{tipController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOglasLabel_idNaloga}" for="idNaloga" />
+                    <h:selectOneMenu id="idNaloga" value="#{oglasController.selected.idNaloga}" title="#{bundle.EditOglasTitle_idNaloga}" >
+                        <f:selectItems value="#{nalogController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{oglasController.update}" value="#{bundle.EditOglasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditOglasViewLink}"/>
+                <br />
+                <h:commandLink action="#{oglasController.prepareList}" value="#{bundle.EditOglasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditOglasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

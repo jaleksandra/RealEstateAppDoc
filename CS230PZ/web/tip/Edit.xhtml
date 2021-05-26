@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTipTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTipLabel_idTipa}" for="idTipa" />
+                    <h:inputText id="idTipa" value="#{tipController.selected.idTipa}" title="#{bundle.EditTipTitle_idTipa}" required="true" requiredMessage="#{bundle.EditTipRequiredMessage_idTipa}"/>
+                    <h:outputLabel value="#{bundle.EditTipLabel_nazivTipa}" for="nazivTipa" />
+                    <h:inputText id="nazivTipa" value="#{tipController.selected.nazivTipa}" title="#{bundle.EditTipTitle_nazivTipa}" />
+                </h:panelGrid>
+                <h:commandLink action="#{tipController.update}" value="#{bundle.EditTipSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTipViewLink}"/>
+                <br />
+                <h:commandLink action="#{tipController.prepareList}" value="#{bundle.EditTipShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTipIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
